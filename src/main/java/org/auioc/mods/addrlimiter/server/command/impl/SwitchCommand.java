@@ -13,8 +13,8 @@ import net.minecraft.network.chat.MutableComponent;
 
 public class SwitchCommand {
 
-    public static final CommandNode<CommandSourceStack> NODE_ENABLE = literal("enable").executes(ctx -> SwitchCommand.switchStatus(ctx, true)).build();
-    public static final CommandNode<CommandSourceStack> NODE_DISABLE = literal("disable").executes(ctx -> SwitchCommand.switchStatus(ctx, false)).build();
+    public static final CommandNode<CommandSourceStack> NODE_ENABLE = literal("enable").requires(source -> source.hasPermission(4)).executes(ctx -> SwitchCommand.switchStatus(ctx, true)).build();
+    public static final CommandNode<CommandSourceStack> NODE_DISABLE = literal("disable").requires(source -> source.hasPermission(4)).executes(ctx -> SwitchCommand.switchStatus(ctx, false)).build();
 
     private static final SimpleCommandExceptionType ALREADY_ENABLED = new SimpleCommandExceptionType(CommandReference.text("already_enabled"));
     private static final SimpleCommandExceptionType ALREADY_DISABLED = new SimpleCommandExceptionType(CommandReference.text("already_disabled"));

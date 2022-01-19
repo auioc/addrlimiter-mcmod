@@ -19,7 +19,7 @@ public class DumpCommand {
 
     public static final CommandNode<CommandSourceStack> NODE =
         literal("dump")
-            .requires(source -> source.hasPermission(3))
+            .requires(source -> source.hasPermission(4))
             .then(literal("list").executes(DumpCommand::dumpAsFriendlyList))
             .then(literal("json").executes(DumpCommand::dumpAsJson))
             .then(
