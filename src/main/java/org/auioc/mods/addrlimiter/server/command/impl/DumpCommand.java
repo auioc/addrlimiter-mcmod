@@ -20,7 +20,7 @@ public class DumpCommand {
     public static final CommandNode<CommandSourceStack> NODE =
         literal("dump")
             .requires(source -> source.hasPermission(3))
-            .then(literal("json").executes(DumpCommand::dumpJson))
+            .then(literal("json").executes(DumpCommand::dumpAsJson))
             .then(
                 literal("file")
                     .requires(source -> (source.getEntity() == null))
@@ -28,7 +28,7 @@ public class DumpCommand {
             )
             .build();
 
-    private static int dumpJson(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
+    private static int dumpAsJson(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
         if (!AddressHandler.isEnabled()) {
             throw CommandReference.NOT_ENABLED.create();
         }
@@ -37,7 +37,7 @@ public class DumpCommand {
 
         CommandSourceStack source = ctx.getSource();
         if (source.getEntity() instanceof ServerPlayer) {
-            source.sendSuccess((CommandReference.prefix()).append(limiter.toJsonText()), false);
+            source.sendSuccess(CommandReference.message(limiter.toJsonText()), false);
         } else {
             LOGGER.info(limiter.toJsonString());
         }
@@ -46,6 +46,10 @@ public class DumpCommand {
     }
 
     private static int dumpToFile(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
+        if (!AddressHandler.isEnabled()) {
+            throw CommandReference.NOT_ENABLED.create();
+        }
+
         try {
             File file = FileUtils.writeText("dumps", "addrlimiter.json", new StringBuffer().append(AddressHandler.getLimiter().toJsonString()));
             ctx.getSource().sendSuccess(CommandReference.message("dump.success", file), false);
@@ -53,6 +57,7 @@ public class DumpCommand {
             LOGGER.error(e);
             throw CommandUtils.INTERNAL_ERROR.create();
         }
+
         return Command.SINGLE_SUCCESS;
     }
 
