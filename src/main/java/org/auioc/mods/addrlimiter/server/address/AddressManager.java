@@ -1,12 +1,15 @@
 package org.auioc.mods.addrlimiter.server.address;
 
+import static org.auioc.mods.arnicalib.utils.game.TextUtils.getStringText;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import com.google.gson.Gson;
 import org.auioc.mods.arnicalib.utils.network.AddressUtils;
+import net.minecraft.network.chat.TextComponent;
 
 public final class AddressManager {
 
@@ -70,6 +73,14 @@ public final class AddressManager {
 
     public void clear() {
         this.map.clear();
+    }
+
+    public String toJsonString() {
+        return (new Gson()).toJson(this.map);
+    }
+
+    public TextComponent toJsonText() {
+        return getStringText(this.toJsonString());
     }
 
 }

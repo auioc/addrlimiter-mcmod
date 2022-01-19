@@ -4,6 +4,7 @@ import static net.minecraft.commands.Commands.literal;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.tree.CommandNode;
 import org.auioc.mods.addrlimiter.AddrLimiter;
+import org.auioc.mods.addrlimiter.server.command.impl.DumpCommand;
 import org.auioc.mods.addrlimiter.server.command.impl.RefreshCommand;
 import org.auioc.mods.addrlimiter.server.command.impl.SwitchCommand;
 import org.auioc.mods.arnicalib.server.command.impl.VersionCommand;
@@ -19,6 +20,7 @@ public final class ServerCommandRegistry {
         NODE.addChild(SwitchCommand.NODE_DISABLE);
         NODE.addChild(SwitchCommand.NODE_ENABLE);
         NODE.addChild(RefreshCommand.NODE);
+        NODE.addChild(DumpCommand.NODE);
 
         org.auioc.mods.arnicalib.server.command.ServerCommandRegistry.getRootNode(dispatcher).addChild(NODE);
     }
