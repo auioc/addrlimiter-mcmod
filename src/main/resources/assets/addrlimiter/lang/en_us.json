@@ -5,5 +5,7 @@
     "addrlimiter.command.already_enabled": "This feature is already enabled, do not repeat this operation",
     "addrlimiter.command.already_disabled": "This feature is already disabled, do not repeat this operation",
     "addrlimiter.command.enable": "This feature is now enabled",
-    "addrlimiter.command.disable": "This feature is now disabled"
+    "addrlimiter.command.disable": "This feature is now disabled",
+    "addrlimiter.command.refresh.start": "Start refreshing",
+    "addrlimiter.command.refresh.success": "Refresh successfully"
 }
