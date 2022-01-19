@@ -18,6 +18,10 @@ public class CommandReference {
         return prefix().append(TextUtils.getI18nText(AddrLimiter.i18n("command." + key)));
     }
 
+    public static MutableComponent message(String key, Object... arguments) {
+        return prefix().append(TextUtils.getI18nText(AddrLimiter.i18n("command." + key), arguments));
+    }
+
     public static MutableComponent text(String key) {
         return (TextUtils.getI18nText(AddrLimiter.i18n("command." + key)));
     }

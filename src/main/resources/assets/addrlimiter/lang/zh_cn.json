@@ -7,5 +7,6 @@
     "addrlimiter.command.enable": "已启用此功能",
     "addrlimiter.command.disable": "已禁用此功能",
     "addrlimiter.command.refresh.start": "开始刷新映射",
-    "addrlimiter.command.refresh.success": "刷新映射成功"
+    "addrlimiter.command.refresh.success": "刷新映射成功",
+    "addrlimiter.command.dump.success": "成功将数据输出到文件%s"
 }
