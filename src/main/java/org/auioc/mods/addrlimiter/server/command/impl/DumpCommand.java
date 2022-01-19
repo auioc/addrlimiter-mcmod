@@ -20,6 +20,7 @@ public class DumpCommand {
     public static final CommandNode<CommandSourceStack> NODE =
         literal("dump")
             .requires(source -> source.hasPermission(3))
+            .then(literal("list").executes(DumpCommand::dumpAsFriendlyList))
             .then(literal("json").executes(DumpCommand::dumpAsJson))
             .then(
                 literal("file")
@@ -56,6 +57,23 @@ public class DumpCommand {
         } catch (Exception e) {
             LOGGER.error(e);
             throw CommandUtils.INTERNAL_ERROR.create();
+        }
+
+        return Command.SINGLE_SUCCESS;
+    }
+
+    private static int dumpAsFriendlyList(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
+        if (!AddressHandler.isEnabled()) {
+            throw CommandReference.NOT_ENABLED.create();
+        }
+
+        AddressManager limiter = AddressHandler.getLimiter();
+
+        CommandSourceStack source = ctx.getSource();
+        if (source.getEntity() instanceof ServerPlayer) {
+            source.sendSuccess(limiter.toChatMessage(), false);
+        } else {
+            LOGGER.info(limiter.toChatMessage().getString());
         }
 
         return Command.SINGLE_SUCCESS;

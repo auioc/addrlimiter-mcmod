@@ -8,5 +8,13 @@
     "addrlimiter.command.disable": "This feature is now disabled",
     "addrlimiter.command.refresh.start": "Start refreshing",
     "addrlimiter.command.refresh.success": "Refresh successfully",
-    "addrlimiter.command.dump.success": "Successful dump data to file %s"
+    "addrlimiter.command.dump.success": "Successful dump data to file %s",
+
+    "addrlimiter.dump.title": "Current player map",
+    "addrlimiter.dump.no_data": "No data is recorded in the addrlimiter",
+    "addrlimiter.dump.local_address": "(Local)",
+    "addrlimiter.dump.lan_address": "(Lan)",
+    "addrlimiter.dump.detected_non_online_players": "WARNING: Detected %s non-online players in the list",
+    "addrlimiter.dump.detected_duplicate_players": "WARNING: Detected %s duplicate players in the list",
+    "addrlimiter.dump.refresh_tip": "(Tip: Try to run \"refresh\" command to fix these errors)"
 }
