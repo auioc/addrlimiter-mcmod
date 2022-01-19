@@ -1,0 +1,9 @@
+{
+    "addrlimiter.title": "AddrLimiter",
+
+    "addrlimiter.command.not_enabled": "此功能未启用",
+    "addrlimiter.command.already_enabled": "此功能已启用, 请勿重复操作",
+    "addrlimiter.command.already_disabled": "此功能已禁用, 请勿重复操作",
+    "addrlimiter.command.enable": "已启用此功能",
+    "addrlimiter.command.disable": "已禁用此功能"
+}
