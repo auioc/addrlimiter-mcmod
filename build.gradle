@@ -127,8 +127,8 @@ task genUpdateJson() {
         def j = [
             'homepage': 'https://github.com/auioc/addrlimiter-mcmod/releases',
             'promos': [
-                    "${minecraft_version}-latest": "${arnicalib_version}",
-                    "${minecraft_version}-recommended": "${arnicalib_version}",
+                    "${minecraft_version}-latest": "${version}",
+                    "${minecraft_version}-recommended": "${version}",
             ]
         ]
         println(groovy.json.JsonOutput.toJson(j))
