@@ -1,5 +1,6 @@
 package org.auioc.mods.addrlimiter.server.address;
 
+import java.util.concurrent.atomic.AtomicBoolean;
 import org.auioc.mods.arnicalib.server.event.impl.ServerLoginEvent;
 import org.auioc.mods.arnicalib.utils.game.AddrUtils;
 import net.minecraft.Util;
@@ -11,7 +12,7 @@ import net.minecraftforge.server.ServerLifecycleHooks;
 public final class AddressHandler {
 
     private static final AddressManager limiter = new AddressManager(1, true, true);
-    private static boolean enabled = true;
+    private static final AtomicBoolean enabled = new AtomicBoolean(true);
 
 
     public static AddressManager getLimiter() {
@@ -20,7 +21,7 @@ public final class AddressHandler {
 
 
     public static boolean isEnabled() {
-        return enabled;
+        return enabled.get();
     }
 
     public static void enable() {
@@ -29,17 +30,17 @@ public final class AddressHandler {
             .forEach((player) -> {
                 limiter.add(AddrUtils.getPlayerIp(player), player.getUUID());
             });
-        enabled = true;
+        enabled.set(true);
     }
 
     public static void disable() {
-        enabled = false;
+        enabled.set(false);
         limiter.clear();
     }
 
 
     public static void playerAttemptLogin(final ServerLoginEvent event) {
-        if (!enabled) {
+        if (!enabled.get()) {
             return;
         }
         if (!limiter.check(AddrUtils.getIp(event.getNetworkManager()), Util.NIL_UUID)) {
@@ -49,7 +50,7 @@ public final class AddressHandler {
     }
 
     public static void playerLogin(final ServerPlayer player) {
-        if (!enabled) {
+        if (!enabled.get()) {
             return;
         }
         if (!limiter.check(AddrUtils.getPlayerIp(player), player.getUUID())) {
@@ -61,7 +62,7 @@ public final class AddressHandler {
     }
 
     public static void playerLogout(final ServerPlayer player) {
-        if (!enabled) {
+        if (!enabled.get()) {
             return;
         }
         limiter.remove(AddrUtils.getPlayerIp(player), player.getUUID());
