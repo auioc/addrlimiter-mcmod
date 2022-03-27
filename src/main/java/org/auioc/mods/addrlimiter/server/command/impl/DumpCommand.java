@@ -2,7 +2,6 @@ package org.auioc.mods.addrlimiter.server.command.impl;
 
 import static net.minecraft.commands.Commands.literal;
 import static org.auioc.mods.addrlimiter.AddrLimiter.LOGGER;
-import java.io.File;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -52,8 +51,8 @@ public class DumpCommand {
         }
 
         try {
-            File file = FileUtils.writeText("dumps", "addrlimiter.json", new StringBuffer().append(AddressHandler.getLimiter().toJsonString()));
-            ctx.getSource().sendSuccess(CommandReference.message("dump.success", file), false);
+            FileUtils.writeText("dumps/addrlimiter.json", AddressHandler.getLimiter().toJsonString());
+            ctx.getSource().sendSuccess(CommandReference.message("dump.success", "dumps/addrlimiter.json"), false);
         } catch (Exception e) {
             LOGGER.error(e);
             throw CommandUtils.INTERNAL_ERROR.create();

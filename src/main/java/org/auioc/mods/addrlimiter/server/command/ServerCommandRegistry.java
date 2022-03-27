@@ -7,7 +7,8 @@ import org.auioc.mods.addrlimiter.AddrLimiter;
 import org.auioc.mods.addrlimiter.server.command.impl.DumpCommand;
 import org.auioc.mods.addrlimiter.server.command.impl.RefreshCommand;
 import org.auioc.mods.addrlimiter.server.command.impl.SwitchCommand;
-import org.auioc.mods.arnicalib.server.command.impl.VersionCommand;
+import org.auioc.mods.arnicalib.common.command.impl.VersionCommand;
+import org.auioc.mods.arnicalib.server.command.AHServerCommands;
 import net.minecraft.commands.CommandSourceStack;
 
 public final class ServerCommandRegistry {
@@ -22,7 +23,7 @@ public final class ServerCommandRegistry {
         NODE.addChild(RefreshCommand.NODE);
         NODE.addChild(DumpCommand.NODE);
 
-        org.auioc.mods.arnicalib.server.command.ServerCommandRegistry.getRootNode(dispatcher).addChild(NODE);
+        AHServerCommands.getRootNode(dispatcher).addChild(NODE);
     }
 
 }
