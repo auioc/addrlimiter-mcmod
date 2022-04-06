@@ -1,8 +1,8 @@
 package org.auioc.mods.addrlimiter.server.address;
 
 import java.util.concurrent.atomic.AtomicBoolean;
-import org.auioc.mods.arnicalib.server.event.impl.ServerLoginEvent;
-import org.auioc.mods.arnicalib.utils.game.AddrUtils;
+import org.auioc.mcmod.arnicalib.server.event.impl.ServerLoginEvent;
+import org.auioc.mcmod.arnicalib.utils.game.AddrUtils;
 import net.minecraft.Util;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;

@@ -3,12 +3,12 @@ package org.auioc.mods.addrlimiter.server.command;
 import static net.minecraft.commands.Commands.literal;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.tree.CommandNode;
+import org.auioc.mcmod.arnicalib.common.command.impl.VersionCommand;
+import org.auioc.mcmod.arnicalib.server.command.AHServerCommands;
 import org.auioc.mods.addrlimiter.AddrLimiter;
 import org.auioc.mods.addrlimiter.server.command.impl.DumpCommand;
 import org.auioc.mods.addrlimiter.server.command.impl.RefreshCommand;
 import org.auioc.mods.addrlimiter.server.command.impl.SwitchCommand;
-import org.auioc.mods.arnicalib.common.command.impl.VersionCommand;
-import org.auioc.mods.arnicalib.server.command.AHServerCommands;
 import net.minecraft.commands.CommandSourceStack;
 
 public final class ServerCommandRegistry {
@@ -23,7 +23,7 @@ public final class ServerCommandRegistry {
         NODE.addChild(RefreshCommand.NODE);
         NODE.addChild(DumpCommand.NODE);
 
-        AHServerCommands.getRootNode(dispatcher).addChild(NODE);
+        AHServerCommands.getAHNode(dispatcher).addChild(NODE);
     }
 
 }

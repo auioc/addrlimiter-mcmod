@@ -3,8 +3,8 @@ package org.auioc.mods.addrlimiter;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.Marker;
-import org.auioc.mods.arnicalib.utils.LogUtil;
-import org.auioc.mods.arnicalib.utils.java.VersionUtils;
+import org.auioc.mcmod.arnicalib.utils.LogUtil;
+import org.auioc.mcmod.arnicalib.utils.java.VersionUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.common.Mod;
 

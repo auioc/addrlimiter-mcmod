@@ -6,11 +6,11 @@ import com.mojang.brigadier.Command;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.tree.CommandNode;
+import org.auioc.mcmod.arnicalib.utils.game.CommandUtils;
+import org.auioc.mcmod.arnicalib.utils.java.FileUtils;
 import org.auioc.mods.addrlimiter.server.address.AddressHandler;
 import org.auioc.mods.addrlimiter.server.address.AddressManager;
 import org.auioc.mods.addrlimiter.server.command.CommandReference;
-import org.auioc.mods.arnicalib.utils.game.CommandUtils;
-import org.auioc.mods.arnicalib.utils.java.FileUtils;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.server.level.ServerPlayer;
 

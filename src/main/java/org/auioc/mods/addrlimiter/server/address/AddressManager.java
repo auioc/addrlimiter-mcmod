@@ -1,7 +1,7 @@
 package org.auioc.mods.addrlimiter.server.address;
 
-import static org.auioc.mods.arnicalib.utils.game.TextUtils.EmptyText;
-import static org.auioc.mods.arnicalib.utils.game.TextUtils.StringText;
+import static org.auioc.mcmod.arnicalib.utils.game.TextUtils.EmptyText;
+import static org.auioc.mcmod.arnicalib.utils.game.TextUtils.StringText;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import com.google.gson.Gson;
+import org.auioc.mcmod.arnicalib.utils.game.TextUtils;
+import org.auioc.mcmod.arnicalib.utils.network.AddressUtils;
 import org.auioc.mods.addrlimiter.AddrLimiter;
-import org.auioc.mods.arnicalib.utils.game.TextUtils;
-import org.auioc.mods.arnicalib.utils.network.AddressUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
