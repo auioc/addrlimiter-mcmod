@@ -1,4 +1,4 @@
-package org.auioc.mods.addrlimiter.server.command.impl;
+package org.auioc.mcmod.addrlimiter.server.command.impl;
 
 import static net.minecraft.commands.Commands.literal;
 import com.mojang.brigadier.Command;
@@ -6,8 +6,8 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
 import com.mojang.brigadier.tree.CommandNode;
-import org.auioc.mods.addrlimiter.server.address.AddressHandler;
-import org.auioc.mods.addrlimiter.server.command.CommandReference;
+import org.auioc.mcmod.addrlimiter.server.address.AddressHandler;
+import org.auioc.mcmod.addrlimiter.server.command.CommandReference;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.network.chat.MutableComponent;
 

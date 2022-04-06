@@ -1,8 +1,8 @@
-package org.auioc.mods.addrlimiter.server.command;
+package org.auioc.mcmod.addrlimiter.server.command;
 
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
+import org.auioc.mcmod.addrlimiter.AddrLimiter;
 import org.auioc.mcmod.arnicalib.utils.game.TextUtils;
-import org.auioc.mods.addrlimiter.AddrLimiter;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;

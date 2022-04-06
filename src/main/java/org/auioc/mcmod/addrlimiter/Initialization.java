@@ -1,6 +1,6 @@
-package org.auioc.mods.addrlimiter;
+package org.auioc.mcmod.addrlimiter;
 
-import org.auioc.mods.addrlimiter.server.event.ServerEventHandler;
+import org.auioc.mcmod.addrlimiter.server.event.ServerEventHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.IExtensionPoint.DisplayTest;

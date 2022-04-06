@@ -1,4 +1,4 @@
-package org.auioc.mods.addrlimiter.server.address;
+package org.auioc.mcmod.addrlimiter.server.address;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.auioc.mcmod.arnicalib.server.event.impl.ServerLoginEvent;

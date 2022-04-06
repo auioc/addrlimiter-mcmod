@@ -1,14 +1,14 @@
-package org.auioc.mods.addrlimiter.server.command;
+package org.auioc.mcmod.addrlimiter.server.command;
 
 import static net.minecraft.commands.Commands.literal;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.tree.CommandNode;
+import org.auioc.mcmod.addrlimiter.AddrLimiter;
+import org.auioc.mcmod.addrlimiter.server.command.impl.DumpCommand;
+import org.auioc.mcmod.addrlimiter.server.command.impl.RefreshCommand;
+import org.auioc.mcmod.addrlimiter.server.command.impl.SwitchCommand;
 import org.auioc.mcmod.arnicalib.common.command.impl.VersionCommand;
 import org.auioc.mcmod.arnicalib.server.command.AHServerCommands;
-import org.auioc.mods.addrlimiter.AddrLimiter;
-import org.auioc.mods.addrlimiter.server.command.impl.DumpCommand;
-import org.auioc.mods.addrlimiter.server.command.impl.RefreshCommand;
-import org.auioc.mods.addrlimiter.server.command.impl.SwitchCommand;
 import net.minecraft.commands.CommandSourceStack;
 
 public final class ServerCommandRegistry {

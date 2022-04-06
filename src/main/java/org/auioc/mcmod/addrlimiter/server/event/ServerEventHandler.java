@@ -1,8 +1,8 @@
-package org.auioc.mods.addrlimiter.server.event;
+package org.auioc.mcmod.addrlimiter.server.event;
 
+import org.auioc.mcmod.addrlimiter.server.address.AddressHandler;
+import org.auioc.mcmod.addrlimiter.server.command.ServerCommandRegistry;
 import org.auioc.mcmod.arnicalib.server.event.impl.ServerLoginEvent;
-import org.auioc.mods.addrlimiter.server.address.AddressHandler;
-import org.auioc.mods.addrlimiter.server.command.ServerCommandRegistry;
 import net.minecraft.network.ConnectionProtocol;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.event.RegisterCommandsEvent;

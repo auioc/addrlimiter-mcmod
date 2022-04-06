@@ -1,4 +1,4 @@
-package org.auioc.mods.addrlimiter;
+package org.auioc.mcmod.addrlimiter;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.Logger;

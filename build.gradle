@@ -48,6 +48,8 @@ minecraft {
     }
 }
 
+sourceSets.remove(sourceSets.test)
+
 repositories {
     maven {
         url "https://maven.pkg.github.com/auioc/arnicalib-mcmod"
