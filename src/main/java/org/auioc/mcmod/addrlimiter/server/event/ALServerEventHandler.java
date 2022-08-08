@@ -1,7 +1,7 @@
 package org.auioc.mcmod.addrlimiter.server.event;
 
 import org.auioc.mcmod.addrlimiter.server.address.AddressHandler;
-import org.auioc.mcmod.addrlimiter.server.command.ServerCommandRegistry;
+import org.auioc.mcmod.addrlimiter.server.command.ALServerCommands;
 import org.auioc.mcmod.arnicalib.server.event.impl.ServerLoginEvent;
 import net.minecraft.network.ConnectionProtocol;
 import net.minecraft.server.level.ServerPlayer;
@@ -9,11 +9,11 @@ import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-public final class ServerEventHandler {
+public final class ALServerEventHandler {
 
     @SubscribeEvent
     public static void registerCommands(final RegisterCommandsEvent event) {
-        ServerCommandRegistry.register(event.getDispatcher());
+        ALServerCommands.register(event.getDispatcher());
     }
 
 

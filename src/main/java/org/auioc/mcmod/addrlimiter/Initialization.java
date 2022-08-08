@@ -1,6 +1,6 @@
 package org.auioc.mcmod.addrlimiter;
 
-import org.auioc.mcmod.addrlimiter.server.event.ServerEventHandler;
+import org.auioc.mcmod.addrlimiter.server.event.ALServerEventHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.IExtensionPoint.DisplayTest;
@@ -13,7 +13,7 @@ public final class Initialization {
         ModLoadingContext.get().registerExtensionPoint(DisplayTest.class, () -> new DisplayTest(() -> NetworkConstants.IGNORESERVERONLY, (s, b) -> true));
 
         final IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
-        forgeEventBus.register(ServerEventHandler.class);
+        forgeEventBus.register(ALServerEventHandler.class);
     }
 
 }
