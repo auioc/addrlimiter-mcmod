@@ -2,15 +2,15 @@ package org.auioc.mcmod.addrlimiter.server.command.impl;
 
 import static net.minecraft.commands.Commands.literal;
 import static org.auioc.mcmod.addrlimiter.AddrLimiter.LOGGER;
-import com.mojang.brigadier.Command;
-import com.mojang.brigadier.context.CommandContext;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import com.mojang.brigadier.tree.CommandNode;
 import org.auioc.mcmod.addrlimiter.server.address.AddressHandler;
 import org.auioc.mcmod.addrlimiter.server.address.AddressManager;
 import org.auioc.mcmod.addrlimiter.server.command.CommandReference;
 import org.auioc.mcmod.arnicalib.utils.game.CommandUtils;
 import org.auioc.mcmod.arnicalib.utils.java.FileUtils;
+import com.mojang.brigadier.Command;
+import com.mojang.brigadier.context.CommandContext;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import com.mojang.brigadier.tree.CommandNode;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.server.level.ServerPlayer;
 
@@ -50,9 +50,11 @@ public class DumpCommand {
             throw CommandReference.NOT_ENABLED.create();
         }
 
+        String file = "dumps/addrlimiter.json";
+
         try {
-            FileUtils.writeText("dumps/addrlimiter.json", AddressHandler.getLimiter().toJsonString());
-            ctx.getSource().sendSuccess(CommandReference.message("dump.success", "dumps/addrlimiter.json"), false);
+            FileUtils.writeStringToFile(FileUtils.getFile(file), AddressHandler.getLimiter().toJsonString());
+            ctx.getSource().sendSuccess(CommandReference.message("dump.success", file), false);
         } catch (Exception e) {
             LOGGER.error(e);
             throw CommandUtils.INTERNAL_ERROR.create();
