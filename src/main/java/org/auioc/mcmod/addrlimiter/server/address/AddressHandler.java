@@ -11,69 +11,59 @@ import net.minecraftforge.server.ServerLifecycleHooks;
 
 public final class AddressHandler {
 
-    private static final AddressManager limiter = new AddressManager(1, true, true);
-    private static final AtomicBoolean enabled = new AtomicBoolean(true);
-
+    private static final AddressManager LIMITER = new AddressManager(1, true, true);
+    private static final AtomicBoolean ENABLED = new AtomicBoolean(true);
 
     public static AddressManager getLimiter() {
-        return limiter;
+        return LIMITER;
     }
 
 
     public static boolean isEnabled() {
-        return enabled.get();
+        return ENABLED.get();
     }
 
     public static void enable() {
-        limiter.clear();
+        LIMITER.clear();
         (ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayers())
             .forEach((player) -> {
-                limiter.add(AddrUtils.getPlayerIp(player), player.getUUID());
+                LIMITER.add(AddrUtils.getPlayerIp(player), player.getUUID());
             });
-        enabled.set(true);
+        ENABLED.set(true);
     }
 
     public static void disable() {
-        enabled.set(false);
-        limiter.clear();
+        ENABLED.set(false);
+        LIMITER.clear();
     }
 
 
     public static void playerAttemptLogin(final ServerLoginEvent event) {
-        if (!enabled.get()) {
-            return;
-        }
-        if (!limiter.check(AddrUtils.getIp(event.getNetworkManager()), Util.NIL_UUID)) {
+        if (!ENABLED.get()) return;
+        if (!LIMITER.check(AddrUtils.getIp(event.getNetworkManager()), Util.NIL_UUID)) {
             event.cancel(getMessage());
         }
-
     }
 
     public static void playerLogin(final ServerPlayer player) {
-        if (!enabled.get()) {
-            return;
-        }
-        if (!limiter.check(AddrUtils.getPlayerIp(player), player.getUUID())) {
+        if (!ENABLED.get()) return;
+        if (!LIMITER.check(AddrUtils.getPlayerIp(player), player.getUUID())) {
             player.connection.disconnect((Component) new TextComponent(getMessage()));
         } else {
-            limiter.add(AddrUtils.getPlayerIp(player), player.getUUID());
+            LIMITER.add(AddrUtils.getPlayerIp(player), player.getUUID());
         }
-
     }
 
     public static void playerLogout(final ServerPlayer player) {
-        if (!enabled.get()) {
-            return;
-        }
-        limiter.remove(AddrUtils.getPlayerIp(player), player.getUUID());
-
+        if (!ENABLED.get()) return;
+        LIMITER.remove(AddrUtils.getPlayerIp(player), player.getUUID());
     }
 
 
     private static String getMessage() {
         return String.format(
             "The number of players with the same IP address has reached the limit. §4You can only connect %s times with the same IP!",
-            limiter.getMaxPlayersPreAddress()
+            LIMITER.getMaxPlayersPreAddress()
         );
     }
 
