@@ -2,6 +2,7 @@ package org.auioc.mcmod.addrlimiter.server.event;
 
 import org.auioc.mcmod.addrlimiter.server.address.AddressHandler;
 import org.auioc.mcmod.addrlimiter.server.command.ALServerCommands;
+import org.auioc.mcmod.addrlimiter.server.config.ALConfig;
 import org.auioc.mcmod.arnicalib.server.event.impl.ServerLoginEvent;
 import net.minecraft.network.ConnectionProtocol;
 import net.minecraft.server.level.ServerPlayer;
@@ -19,8 +20,10 @@ public final class ALServerEventHandler {
 
     @SubscribeEvent
     public static void onPlayerAttemptLogin(final ServerLoginEvent event) {
-        if (event.getPacket().getIntention() == ConnectionProtocol.LOGIN) {
-            AddressHandler.playerAttemptLogin(event);
+        if (ALConfig.disconnectBeforeLogin.get()) {
+            if (event.getPacket().getIntention() == ConnectionProtocol.LOGIN) {
+                AddressHandler.playerAttemptLogin(event);
+            }
         }
     }
 

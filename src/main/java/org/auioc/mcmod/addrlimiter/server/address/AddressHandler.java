@@ -1,6 +1,7 @@
 package org.auioc.mcmod.addrlimiter.server.address;
 
 import java.util.concurrent.atomic.AtomicBoolean;
+import org.auioc.mcmod.addrlimiter.server.config.ALConfig;
 import org.auioc.mcmod.arnicalib.server.event.impl.ServerLoginEvent;
 import org.auioc.mcmod.arnicalib.utils.game.AddrUtils;
 import net.minecraft.Util;
@@ -11,7 +12,7 @@ import net.minecraftforge.server.ServerLifecycleHooks;
 
 public final class AddressHandler {
 
-    private static final AddressManager LIMITER = new AddressManager(1, true, true);
+    private static final AddressManager LIMITER = new AddressManager(ALConfig.maxPlayersPreAddress.get(), ALConfig.bypassLocalAddress.get(), ALConfig.bypassLanAddress.get());
     private static final AtomicBoolean ENABLED = new AtomicBoolean(true);
 
     public static AddressManager getLimiter() {
@@ -40,6 +41,7 @@ public final class AddressHandler {
 
     public static void playerAttemptLogin(final ServerLoginEvent event) {
         if (!ENABLED.get()) return;
+
         if (!LIMITER.check(AddrUtils.getIp(event.getNetworkManager()), Util.NIL_UUID)) {
             event.cancel(getMessage());
         }
@@ -47,6 +49,7 @@ public final class AddressHandler {
 
     public static void playerLogin(final ServerPlayer player) {
         if (!ENABLED.get()) return;
+
         if (!LIMITER.check(AddrUtils.getPlayerIp(player), player.getUUID())) {
             player.connection.disconnect((Component) new TextComponent(getMessage()));
         } else {
@@ -56,6 +59,7 @@ public final class AddressHandler {
 
     public static void playerLogout(final ServerPlayer player) {
         if (!ENABLED.get()) return;
+
         LIMITER.remove(AddrUtils.getPlayerIp(player), player.getUUID());
     }
 
