@@ -1,13 +1,13 @@
 package org.auioc.mcmod.addrlimiter.server.command.impl;
 
 import static net.minecraft.commands.Commands.literal;
+import static org.auioc.mcmod.addrlimiter.server.command.ALCommandReferences.CFH;
+import org.auioc.mcmod.addrlimiter.server.address.AddressHandler;
+import org.auioc.mcmod.addrlimiter.server.command.ALCommandReferences;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.tree.CommandNode;
-import org.auioc.mcmod.addrlimiter.server.address.AddressHandler;
-import org.auioc.mcmod.addrlimiter.server.command.CommandReference;
-import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 
 public class RefreshCommand {
@@ -19,16 +19,12 @@ public class RefreshCommand {
             .build();
 
     private static final int refresh(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
-        if (!AddressHandler.isEnabled()) {
-            throw CommandReference.NOT_ENABLED.create();
-        }
+        if (!AddressHandler.isEnabled()) throw ALCommandReferences.NOT_ENABLED_ERROR.create();
 
-        CommandSourceStack source = ctx.getSource();
-
-        source.sendSuccess(CommandReference.message("refresh.start"), true);
+        CFH.sendSuccessAndBoardcast(ctx, "refresh.start");
         AddressHandler.disable();
         AddressHandler.enable();
-        source.sendSuccess(CommandReference.message("refresh.success").withStyle(ChatFormatting.GREEN), true);
+        CFH.sendSuccessAndBoardcast(ctx, "refresh");
 
         return Command.SINGLE_SUCCESS;
     }

@@ -16,7 +16,7 @@ public final class ALServerCommands {
     public static final CommandNode<CommandSourceStack> NODE = literal(AddrLimiter.MOD_ID).build();
 
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
-        NODE.addChild(literal("version").executes((ctx) -> VersionCommand.getModVersion(ctx, AddrLimiter.MAIN_VERSION, AddrLimiter.FULL_VERSION, AddrLimiter.MOD_NAME)).build());
+        VersionCommand.addVersionNode(NODE, AddrLimiter.class);
 
         NODE.addChild(SwitchCommand.NODE_DISABLE);
         NODE.addChild(SwitchCommand.NODE_ENABLE);

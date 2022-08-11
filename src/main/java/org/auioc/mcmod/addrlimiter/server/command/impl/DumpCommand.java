@@ -2,9 +2,10 @@ package org.auioc.mcmod.addrlimiter.server.command.impl;
 
 import static net.minecraft.commands.Commands.literal;
 import static org.auioc.mcmod.addrlimiter.AddrLimiter.LOGGER;
+import static org.auioc.mcmod.addrlimiter.server.command.ALCommandReferences.CFH;
 import org.auioc.mcmod.addrlimiter.server.address.AddressHandler;
 import org.auioc.mcmod.addrlimiter.server.address.AddressManager;
-import org.auioc.mcmod.addrlimiter.server.command.CommandReference;
+import org.auioc.mcmod.addrlimiter.server.command.ALCommandReferences;
 import org.auioc.mcmod.arnicalib.utils.game.CommandUtils;
 import org.auioc.mcmod.arnicalib.utils.java.FileUtils;
 import com.mojang.brigadier.Command;
@@ -29,15 +30,13 @@ public class DumpCommand {
             .build();
 
     private static int dumpAsJson(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
-        if (!AddressHandler.isEnabled()) {
-            throw CommandReference.NOT_ENABLED.create();
-        }
+        if (!AddressHandler.isEnabled()) throw ALCommandReferences.NOT_ENABLED_ERROR.create();
 
         AddressManager limiter = AddressHandler.getLimiter();
 
         CommandSourceStack source = ctx.getSource();
         if (source.getEntity() instanceof ServerPlayer) {
-            source.sendSuccess(CommandReference.message(limiter.toJsonText()), false);
+            CFH.sendSuccess(ctx, "dump.json", limiter.toJsonText());
         } else {
             LOGGER.info(limiter.toJsonString());
         }
@@ -46,15 +45,13 @@ public class DumpCommand {
     }
 
     private static int dumpToFile(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
-        if (!AddressHandler.isEnabled()) {
-            throw CommandReference.NOT_ENABLED.create();
-        }
+        if (!AddressHandler.isEnabled()) throw ALCommandReferences.NOT_ENABLED_ERROR.create();
 
         String file = "dumps/addrlimiter.json";
 
         try {
             FileUtils.writeStringToFile(FileUtils.getFile(file), AddressHandler.getLimiter().toJsonString());
-            ctx.getSource().sendSuccess(CommandReference.message("dump.success", file), false);
+            CFH.sendSuccess(ctx, "dump.file", file);
         } catch (Exception e) {
             LOGGER.error(e);
             throw CommandUtils.INTERNAL_ERROR.create();
@@ -64,9 +61,7 @@ public class DumpCommand {
     }
 
     private static int dumpAsFriendlyList(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
-        if (!AddressHandler.isEnabled()) {
-            throw CommandReference.NOT_ENABLED.create();
-        }
+        if (!AddressHandler.isEnabled()) throw ALCommandReferences.NOT_ENABLED_ERROR.create();
 
         AddressManager limiter = AddressHandler.getLimiter();
 

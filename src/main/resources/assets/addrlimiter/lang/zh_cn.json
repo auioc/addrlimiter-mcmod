@@ -4,11 +4,13 @@
     "addrlimiter.command.not_enabled": "此功能未启用",
     "addrlimiter.command.already_enabled": "此功能已启用, 请勿重复操作",
     "addrlimiter.command.already_disabled": "此功能已禁用, 请勿重复操作",
-    "addrlimiter.command.enable": "已启用此功能",
-    "addrlimiter.command.disable": "已禁用此功能",
-    "addrlimiter.command.refresh.start": "开始刷新映射",
+
+    "addrlimiter.command.enable.success": "已启用此功能",
+    "addrlimiter.command.disable.success": "已禁用此功能",
+    "addrlimiter.command.refresh.start.success": "开始刷新映射",
     "addrlimiter.command.refresh.success": "刷新映射成功",
-    "addrlimiter.command.dump.success": "成功将数据输出到文件%s",
+    "addrlimiter.command.dump.file.success": "成功将数据输出到文件%s",
+    "addrlimiter.command.dump.json.success": "%s",
 
     "addrlimiter.dump.title": "已记录的玩家映射",
     "addrlimiter.dump.no_data": "记录中没有任何数据",

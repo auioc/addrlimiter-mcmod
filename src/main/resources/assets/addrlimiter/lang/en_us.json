@@ -4,11 +4,13 @@
     "addrlimiter.command.not_enabled": "This feature is not enabled",
     "addrlimiter.command.already_enabled": "This feature is already enabled, do not repeat this operation",
     "addrlimiter.command.already_disabled": "This feature is already disabled, do not repeat this operation",
-    "addrlimiter.command.enable": "This feature is now enabled",
-    "addrlimiter.command.disable": "This feature is now disabled",
-    "addrlimiter.command.refresh.start": "Start refreshing",
+
+    "addrlimiter.command.enable.success": "This feature is now enabled",
+    "addrlimiter.command.disable.success": "This feature is now disabled",
+    "addrlimiter.command.refresh.start.success": "Start refreshing",
     "addrlimiter.command.refresh.success": "Refresh successfully",
-    "addrlimiter.command.dump.success": "Successful dump data to file %s",
+    "addrlimiter.command.dump.file.success": "Successful dump data to file %s",
+    "addrlimiter.command.dump.json.success": "%s",
 
     "addrlimiter.dump.title": "Current player map",
     "addrlimiter.dump.no_data": "No data is recorded in the addrlimiter",
