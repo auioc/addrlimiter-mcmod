@@ -24,6 +24,7 @@ public final class ALServerCommands {
         NODE.addChild(DumpCommand.NODE);
 
         AHServerCommands.getAHNode(dispatcher).addChild(NODE);
+        dispatcher.register(literal(AddrLimiter.MOD_ID).redirect(NODE));
     }
 
 }
