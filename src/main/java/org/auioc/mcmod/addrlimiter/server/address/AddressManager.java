@@ -1,17 +1,16 @@
 package org.auioc.mcmod.addrlimiter.server.address;
 
-import static org.auioc.mcmod.arnicalib.utils.game.TextUtils.EmptyText;
-import static org.auioc.mcmod.arnicalib.utils.game.TextUtils.StringText;
+import static org.auioc.mcmod.arnicalib.utils.game.TextUtils.literal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import com.google.gson.Gson;
 import org.auioc.mcmod.addrlimiter.AddrLimiter;
 import org.auioc.mcmod.arnicalib.utils.game.TextUtils;
 import org.auioc.mcmod.arnicalib.utils.network.AddressUtils;
+import com.google.gson.Gson;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
@@ -90,17 +89,17 @@ public final class AddressManager {
     }
 
     public TextComponent toJsonText() {
-        return StringText(this.toJsonString());
+        return literal(this.toJsonString());
     }
 
     public Component toChatMessage() {
-        TextComponent m = EmptyText();
+        TextComponent m = TextUtils.empty();
 
-        m.append(StringText("[" + AddrLimiter.MOD_NAME + "]").withStyle(ChatFormatting.AQUA));
-        m.append(newLine().append(I18nText("title")).withStyle(ChatFormatting.DARK_AQUA));
+        m.append(literal("[" + AddrLimiter.MOD_NAME + "]").withStyle(ChatFormatting.AQUA));
+        m.append(newLine().append(translatable("title")).withStyle(ChatFormatting.DARK_AQUA));
 
         if (map.isEmpty()) {
-            return m.append(newLine().append(" ┗ ").append(I18nText("no_data")).withStyle(ChatFormatting.YELLOW));
+            return m.append(newLine().append(" ┗ ").append(translatable("no_data")).withStyle(ChatFormatting.YELLOW));
         }
 
         int entryIndex = 0;
@@ -113,13 +112,13 @@ public final class AddressManager {
             boolean lastEntry = (entryIndex == map.size() - 1);
             entryIndex++;
 
-            TextComponent l = StringText("\n  " + (lastEntry ? "┗ " : "┣ ") + addr);
+            TextComponent l = literal("\n  " + (lastEntry ? "┗ " : "┣ ") + addr);
             if (AddressUtils.isLocalAddress(addr)) {
-                l.append(StringText(" ").append(I18nText("local_address")).withStyle(ChatFormatting.GRAY));
+                l.append(literal(" ").append(translatable("local_address")).withStyle(ChatFormatting.GRAY));
             } else if (AddressUtils.isLanAddress(addr)) {
-                l.append(StringText(" ").append(I18nText("lan_address")).withStyle(ChatFormatting.GRAY));
+                l.append(literal(" ").append(translatable("lan_address")).withStyle(ChatFormatting.GRAY));
             }
-            l.append(StringText(" (" + uuids.size() + ")").withStyle(ChatFormatting.GRAY));
+            l.append(literal(" (" + uuids.size() + ")").withStyle(ChatFormatting.GRAY));
 
             PlayerList playerList = ServerLifecycleHooks.getCurrentServer().getPlayerList();
             for (int i = 0; i < uuids.size(); i++) {
@@ -129,9 +128,9 @@ public final class AddressManager {
 
                 String p = String.format("\n  %s  %s ", (lastEntry ? " " : "┃"), (i == uuids.size() - 1) ? "┗" : "┣");
                 if (player != null) {
-                    l.append(StringText(p).append(player.getDisplayName()));
+                    l.append(literal(p).append(player.getDisplayName()));
                 } else {
-                    l.append(StringText(p).append(StringText(uuid.toString()).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC)));
+                    l.append(literal(p).append(literal(uuid.toString()).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC)));
                     errorOffline++;
                 }
             }
@@ -139,31 +138,31 @@ public final class AddressManager {
             m.append(l);
         }
 
-        TextComponent e = (TextComponent) EmptyText().withStyle(ChatFormatting.YELLOW);
+        TextComponent e = (TextComponent) TextUtils.empty().withStyle(ChatFormatting.YELLOW);
         if (errorOffline > 0) {
-            e.append(newLine().append(I18nText("detected_non_online_players", errorOffline)));
+            e.append(newLine().append(translatable("detected_non_online_players", errorOffline)));
         }
         if (uuidsAll.size() > uuidsAll.stream().distinct().count()) {
-            e.append(newLine().append(I18nText("detected_duplicate_players", uuidsAll.size() - uuidsAll.stream().distinct().count())));
+            e.append(newLine().append(translatable("detected_duplicate_players", uuidsAll.size() - uuidsAll.stream().distinct().count())));
         }
         if (!e.getSiblings().isEmpty()) {
-            e.append(newLine().append(I18nText("refresh_tip")).withStyle(ChatFormatting.GREEN));
+            e.append(newLine().append(translatable("refresh_tip")).withStyle(ChatFormatting.GREEN));
         }
         m.append(e);
 
         return m;
     }
 
-    private static TranslatableComponent I18nText(String key) {
-        return TextUtils.getI18nText("addrlimiter.dump." + key);
+    private static TranslatableComponent translatable(String key) {
+        return TextUtils.translatable("addrlimiter.dump." + key);
     }
 
-    private static TranslatableComponent I18nText(String key, Object... arguments) {
-        return TextUtils.getI18nText("addrlimiter.dump." + key, arguments);
+    private static TranslatableComponent translatable(String key, Object... arguments) {
+        return TextUtils.translatable("addrlimiter.dump." + key, arguments);
     }
 
     private static TextComponent newLine() {
-        return StringText("\n ");
+        return literal("\n ");
     }
 
 }

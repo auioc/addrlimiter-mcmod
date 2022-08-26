@@ -1,7 +1,7 @@
 package org.auioc.mcmod.addrlimiter.server.command.impl;
 
 import static net.minecraft.commands.Commands.literal;
-import static org.auioc.mcmod.addrlimiter.server.command.ALCommandReferences.CFH;
+import static org.auioc.mcmod.addrlimiter.server.command.ALCommandReferences.MSGH;
 import org.auioc.mcmod.addrlimiter.server.address.AddressHandler;
 import org.auioc.mcmod.addrlimiter.server.command.ALCommandReferences;
 import com.mojang.brigadier.Command;
@@ -21,10 +21,10 @@ public class RefreshCommand {
     private static final int refresh(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
         if (!AddressHandler.isEnabled()) throw ALCommandReferences.NOT_ENABLED_ERROR.create();
 
-        CFH.sendSuccessAndBoardcast(ctx, "refresh.start");
+        ctx.getSource().sendSuccess(MSGH.create("refresh.start.success", true), true);
         AddressHandler.disable();
         AddressHandler.enable();
-        CFH.sendSuccessAndBoardcast(ctx, "refresh");
+        ctx.getSource().sendSuccess(MSGH.create("refresh.success", true), true);
 
         return Command.SINGLE_SUCCESS;
     }

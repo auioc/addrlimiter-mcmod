@@ -1,18 +1,13 @@
 package org.auioc.mcmod.addrlimiter.server.command;
 
 import org.auioc.mcmod.addrlimiter.AddrLimiter;
-import org.auioc.mcmod.arnicalib.utils.game.CommandFeedbackHelper;
-import org.auioc.mcmod.arnicalib.utils.game.TextUtils;
+import org.auioc.mcmod.arnicalib.utils.game.MessageHelper;
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
-import net.minecraft.ChatFormatting;
 
 public class ALCommandReferences {
 
-    public static final CommandFeedbackHelper CFH = new CommandFeedbackHelper(
-        TextUtils.getStringText("[" + AddrLimiter.MOD_NAME + "] ").withStyle(ChatFormatting.AQUA),
-        AddrLimiter::i18n
-    );
+    public static final MessageHelper MSGH = new MessageHelper(AddrLimiter.MOD_NAME, (key) -> AddrLimiter.i18n("command." + key));
 
-    public static final SimpleCommandExceptionType NOT_ENABLED_ERROR = new SimpleCommandExceptionType(CFH.createMessage("not_enabled"));
+    public static final SimpleCommandExceptionType NOT_ENABLED_ERROR = new SimpleCommandExceptionType(MSGH.create("not_enabled", true));
 
 }

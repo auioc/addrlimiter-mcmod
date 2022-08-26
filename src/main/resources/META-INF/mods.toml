@@ -29,6 +29,6 @@ description='''
 [[dependencies.addrlimiter]]
     modId="arnicalib"
     mandatory=true
-    versionRange="[5.3.7,)"
+    versionRange="[5.4.4,)"
     ordering="NONE"
     side="BOTH"

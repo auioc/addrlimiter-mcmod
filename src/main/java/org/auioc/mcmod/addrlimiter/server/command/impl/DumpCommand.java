@@ -2,11 +2,12 @@ package org.auioc.mcmod.addrlimiter.server.command.impl;
 
 import static net.minecraft.commands.Commands.literal;
 import static org.auioc.mcmod.addrlimiter.AddrLimiter.LOGGER;
-import static org.auioc.mcmod.addrlimiter.server.command.ALCommandReferences.CFH;
+import static org.auioc.mcmod.addrlimiter.server.command.ALCommandReferences.MSGH;
 import org.auioc.mcmod.addrlimiter.server.address.AddressHandler;
 import org.auioc.mcmod.addrlimiter.server.address.AddressManager;
 import org.auioc.mcmod.addrlimiter.server.command.ALCommandReferences;
-import org.auioc.mcmod.arnicalib.utils.game.CommandUtils;
+import org.auioc.mcmod.arnicalib.utils.game.command.CommandExceptions;
+import org.auioc.mcmod.arnicalib.utils.game.command.CommandSourceUtils;
 import org.auioc.mcmod.arnicalib.utils.java.FileUtils;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.context.CommandContext;
@@ -19,12 +20,12 @@ public class DumpCommand {
 
     public static final CommandNode<CommandSourceStack> NODE =
         literal("dump")
-            .requires(source -> source.hasPermission(4))
+            .requires(CommandSourceUtils.PERMISSION_LEVEL_4)
             .then(literal("list").executes(DumpCommand::dumpAsFriendlyList))
             .then(literal("json").executes(DumpCommand::dumpAsJson))
             .then(
                 literal("file")
-                    .requires(source -> (source.getEntity() == null))
+                    .requires(CommandSourceUtils.IS_DEDICATED_SERVER)
                     .executes(DumpCommand::dumpToFile)
             )
             .build();
@@ -36,7 +37,7 @@ public class DumpCommand {
 
         CommandSourceStack source = ctx.getSource();
         if (source.getEntity() instanceof ServerPlayer) {
-            CFH.sendSuccess(ctx, "dump.json", limiter.toJsonText());
+            ctx.getSource().sendSuccess(MSGH.create("dump.json.success", new Object[] {limiter.toJsonText()}, true), false);
         } else {
             LOGGER.info(limiter.toJsonString());
         }
@@ -51,10 +52,10 @@ public class DumpCommand {
 
         try {
             FileUtils.writeStringToFile(FileUtils.getFile(file), AddressHandler.getLimiter().toJsonString());
-            CFH.sendSuccess(ctx, "dump.file", file);
+            ctx.getSource().sendSuccess(MSGH.create("dump.file.success", new Object[] {file}, true), true);
         } catch (Exception e) {
             LOGGER.error(e);
-            throw CommandUtils.INTERNAL_ERROR.create();
+            throw CommandExceptions.INTERNAL_ERROR.create();
         }
 
         return Command.SINGLE_SUCCESS;
