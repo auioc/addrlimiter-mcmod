@@ -12,7 +12,7 @@ import net.minecraftforge.server.ServerLifecycleHooks;
 
 public final class AddressHandler {
 
-    private static final AddressManager LIMITER = new AddressManager(ALConfig.maxPlayersPreAddress.get(), ALConfig.bypassLocalAddress.get(), ALConfig.bypassLanAddress.get());
+    private static final AddressManager LIMITER = new AddressManager(ALConfig.maxPlayersPreAddress.get(), ALConfig.bypassLocalAddress.get(), ALConfig.bypassLanAddress.get(), ALConfig.bypassableAddresses.get());
     private static final AtomicBoolean ENABLED = new AtomicBoolean(true);
 
     public static AddressManager getLimiter() {

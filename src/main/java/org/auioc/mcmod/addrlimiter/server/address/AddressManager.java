@@ -25,11 +25,13 @@ public final class AddressManager {
     private final int maxPlayersPreAddress;
     private final boolean bypassLocalAddress;
     private final boolean bypassLanAddress;
+    private final List<String> bypassableAddresses;
 
-    public AddressManager(int maxPlayersPreAddress, boolean bypassLocalAddress, boolean bypassLanAddress) {
+    public AddressManager(int maxPlayersPreAddress, boolean bypassLocalAddress, boolean bypassLanAddress, List<String> bypassableAddresses) {
         this.maxPlayersPreAddress = maxPlayersPreAddress;
         this.bypassLocalAddress = bypassLocalAddress;
         this.bypassLanAddress = bypassLanAddress;
+        this.bypassableAddresses = bypassableAddresses;
     }
 
 
@@ -66,15 +68,10 @@ public final class AddressManager {
 
     public boolean check(String addr, UUID uuid) {
         if (this.map.containsKey(addr)) {
-            if (this.bypassLocalAddress && AddressUtils.isLocalAddress(addr)) {
-                return true;
-            }
-            if (this.bypassLanAddress && AddressUtils.isLanAddress(addr)) {
-                return true;
-            }
-            if ((this.map.get(addr)).size() > (this.maxPlayersPreAddress - 1)) {
-                return false;
-            }
+            if (this.bypassLocalAddress && AddressUtils.isLocalAddress(addr)) return true;
+            if (this.bypassLanAddress && AddressUtils.isLanAddress(addr)) return true;
+            if (this.bypassableAddresses.contains(addr)) return true;
+            if ((this.map.get(addr)).size() > (this.maxPlayersPreAddress - 1)) return false;
         }
         return true;
     }
@@ -113,11 +110,11 @@ public final class AddressManager {
             entryIndex++;
 
             TextComponent l = literal("\n  " + (lastEntry ? "┗ " : "┣ ") + addr);
-            if (AddressUtils.isLocalAddress(addr)) {
-                l.append(literal(" ").append(translatable("local_address")).withStyle(ChatFormatting.GRAY));
-            } else if (AddressUtils.isLanAddress(addr)) {
-                l.append(literal(" ").append(translatable("lan_address")).withStyle(ChatFormatting.GRAY));
-            }
+
+            if (AddressUtils.isLocalAddress(addr)) l.append(literal(" ").append(translatable("local_address")).withStyle(ChatFormatting.GRAY));
+            else if (AddressUtils.isLanAddress(addr)) l.append(literal(" ").append(translatable("lan_address")).withStyle(ChatFormatting.GRAY));
+            else if (this.bypassableAddresses.contains(addr)) l.append(literal(" ").append(translatable("bypassable_address")).withStyle(ChatFormatting.GRAY));
+
             l.append(literal(" (" + uuids.size() + ")").withStyle(ChatFormatting.GRAY));
 
             PlayerList playerList = ServerLifecycleHooks.getCurrentServer().getPlayerList();
@@ -139,15 +136,9 @@ public final class AddressManager {
         }
 
         TextComponent e = (TextComponent) TextUtils.empty().withStyle(ChatFormatting.YELLOW);
-        if (errorOffline > 0) {
-            e.append(newLine().append(translatable("detected_non_online_players", errorOffline)));
-        }
-        if (uuidsAll.size() > uuidsAll.stream().distinct().count()) {
-            e.append(newLine().append(translatable("detected_duplicate_players", uuidsAll.size() - uuidsAll.stream().distinct().count())));
-        }
-        if (!e.getSiblings().isEmpty()) {
-            e.append(newLine().append(translatable("refresh_tip")).withStyle(ChatFormatting.GREEN));
-        }
+        if (errorOffline > 0) e.append(newLine().append(translatable("detected_non_online_players", errorOffline)));
+        if (uuidsAll.size() > uuidsAll.stream().distinct().count()) e.append(newLine().append(translatable("detected_duplicate_players", uuidsAll.size() - uuidsAll.stream().distinct().count())));
+        if (!e.getSiblings().isEmpty()) e.append(newLine().append(translatable("refresh_tip")).withStyle(ChatFormatting.GREEN));
         m.append(e);
 
         return m;

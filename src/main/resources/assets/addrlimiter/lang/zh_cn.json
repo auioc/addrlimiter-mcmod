@@ -16,6 +16,7 @@
     "addrlimiter.dump.no_data": "记录中没有任何数据",
     "addrlimiter.dump.local_address": "(本地地址)",
     "addrlimiter.dump.lan_address": "(局域网地址)",
+    "addrlimiter.dump.bypassable_address": "(可绕过限制的地址)",
     "addrlimiter.dump.detected_non_online_players": "警告: 在记录中检测到%s个未在线的玩家",
     "addrlimiter.dump.detected_duplicate_players": "警告: 在记录中检测到%s个重复的玩家",
     "addrlimiter.dump.refresh_tip": "(提示: 尝试使用\"refresh\"命令来修复错误)"

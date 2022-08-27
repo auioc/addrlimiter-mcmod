@@ -16,6 +16,7 @@
     "addrlimiter.dump.no_data": "No data is recorded in the addrlimiter",
     "addrlimiter.dump.local_address": "(Local)",
     "addrlimiter.dump.lan_address": "(Lan)",
+    "addrlimiter.dump.bypassable_address": "(Bypassable)",
     "addrlimiter.dump.detected_non_online_players": "WARNING: Detected %s non-online players in the list",
     "addrlimiter.dump.detected_duplicate_players": "WARNING: Detected %s duplicate players in the list",
     "addrlimiter.dump.refresh_tip": "(Tip: Try to run \"refresh\" command to fix these errors)"
