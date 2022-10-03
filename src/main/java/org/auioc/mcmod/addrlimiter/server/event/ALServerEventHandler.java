@@ -3,7 +3,7 @@ package org.auioc.mcmod.addrlimiter.server.event;
 import org.auioc.mcmod.addrlimiter.server.address.AddressHandler;
 import org.auioc.mcmod.addrlimiter.server.command.ALServerCommands;
 import org.auioc.mcmod.addrlimiter.server.config.ALConfig;
-import org.auioc.mcmod.arnicalib.server.event.impl.ServerLoginEvent;
+import org.auioc.mcmod.arnicalib.game.event.server.ServerLoginEvent;
 import net.minecraft.network.ConnectionProtocol;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.event.RegisterCommandsEvent;

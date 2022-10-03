@@ -53,19 +53,16 @@ minecraft {
 sourceSets.remove(sourceSets.test)
 
 repositories {
-    maven {
-        url "https://maven.pkg.github.com/auioc/arnicalib-mcmod"
-        credentials {
-            username = System.getenv("GITHUB_ACTOR") ? System.getenv("GITHUB_ACTOR") : System.getenv("GITHUB_USERNAME")
-            password = System.getenv("GITHUB_TOKEN")
-        }
+    maven { 
+        url 'https://repo.auioc.org/maven/releases'
+        content { includeGroup "org.auioc.mcmod" }
     }
 }
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
-    implementation "org.auioc.mcmod:arnicalib:${minecraft_version}-${arnicalib_version}:forgelib"
+    implementation("org.auioc.mcmod:arnicalib:${minecraft_version}-${arnicalib_version}:forgelib"){ transitive = false }
 }
 
 apply from: 'gradle/tasks.gradle'

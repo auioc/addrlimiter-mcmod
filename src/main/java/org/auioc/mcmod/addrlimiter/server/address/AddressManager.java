@@ -1,6 +1,6 @@
 package org.auioc.mcmod.addrlimiter.server.address;
 
-import static org.auioc.mcmod.arnicalib.utils.game.TextUtils.literal;
+import static org.auioc.mcmod.arnicalib.game.chat.TextUtils.literal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import org.auioc.mcmod.addrlimiter.AddrLimiter;
-import org.auioc.mcmod.arnicalib.utils.game.TextUtils;
-import org.auioc.mcmod.arnicalib.utils.network.AddressUtils;
+import org.auioc.mcmod.arnicalib.base.network.AddressUtils;
+import org.auioc.mcmod.arnicalib.game.chat.TextUtils;
 import com.google.gson.Gson;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;

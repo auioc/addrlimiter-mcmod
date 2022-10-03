@@ -6,9 +6,9 @@ import static org.auioc.mcmod.addrlimiter.server.command.ALCommandReferences.MSG
 import org.auioc.mcmod.addrlimiter.server.address.AddressHandler;
 import org.auioc.mcmod.addrlimiter.server.address.AddressManager;
 import org.auioc.mcmod.addrlimiter.server.command.ALCommandReferences;
-import org.auioc.mcmod.arnicalib.utils.game.command.CommandExceptions;
-import org.auioc.mcmod.arnicalib.utils.game.command.CommandSourceUtils;
-import org.auioc.mcmod.arnicalib.utils.java.FileUtils;
+import org.auioc.mcmod.arnicalib.base.file.FileUtils;
+import org.auioc.mcmod.arnicalib.game.command.CommandExceptions;
+import org.auioc.mcmod.arnicalib.game.command.CommandSourceUtils;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;

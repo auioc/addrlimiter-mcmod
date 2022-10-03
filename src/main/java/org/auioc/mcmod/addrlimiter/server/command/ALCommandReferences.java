@@ -1,7 +1,7 @@
 package org.auioc.mcmod.addrlimiter.server.command;
 
 import org.auioc.mcmod.addrlimiter.AddrLimiter;
-import org.auioc.mcmod.arnicalib.utils.game.MessageHelper;
+import org.auioc.mcmod.arnicalib.game.chat.MessageHelper;
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
 
 public class ALCommandReferences {

@@ -3,7 +3,7 @@ package org.auioc.mcmod.addrlimiter.server.command.impl;
 import static net.minecraft.commands.Commands.literal;
 import static org.auioc.mcmod.addrlimiter.server.command.ALCommandReferences.MSGH;
 import org.auioc.mcmod.addrlimiter.server.address.AddressHandler;
-import org.auioc.mcmod.arnicalib.utils.game.command.CommandSourceUtils;
+import org.auioc.mcmod.arnicalib.game.command.CommandSourceUtils;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
