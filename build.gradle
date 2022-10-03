@@ -53,7 +53,7 @@ minecraft {
 sourceSets.remove(sourceSets.test)
 
 repositories {
-    maven { 
+    maven {
         url 'https://repo.auioc.org/maven/releases'
         content { includeGroup "org.auioc.mcmod" }
     }
