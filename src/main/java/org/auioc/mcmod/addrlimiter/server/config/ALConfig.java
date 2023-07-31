@@ -18,6 +18,7 @@ public class ALConfig {
     public static final BooleanValue bypassLanAddress;
     public static final ConfigValue<List<String>> bypassableAddresses;
     public static final BooleanValue disconnectBeforeLogin;
+    public static final ConfigValue<String> disconnectMessage;
 
     static {
         final ForgeConfigSpec.Builder b = new ForgeConfigSpec.Builder();
@@ -28,6 +29,7 @@ public class ALConfig {
             bypassLanAddress = b.worldRestart().define("bypass_lan_address", true);
             bypassableAddresses = b.define("bypassable_addresses", new ArrayList<String>());
             disconnectBeforeLogin = b.define("disconnect_before_login", true);
+            disconnectMessage = b.define("disconnect_message", "The number of players with the same IP address has reached the limit. \u00A74You can only connect %s times with the same IP!");
         }
 
         CONFIG = b.build();

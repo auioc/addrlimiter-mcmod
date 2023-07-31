@@ -67,7 +67,7 @@ public final class AddressHandler {
 
     private static String getMessage() {
         return String.format(
-            "The number of players with the same IP address has reached the limit. §4You can only connect %s times with the same IP!",
+            ALConfig.disconnectMessage.get(),
             LIMITER.getMaxPlayersPreAddress()
         );
     }
