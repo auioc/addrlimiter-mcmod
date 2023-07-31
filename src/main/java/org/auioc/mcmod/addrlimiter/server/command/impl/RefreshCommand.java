@@ -21,10 +21,10 @@ public class RefreshCommand {
     private static final int refresh(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
         if (!AddressHandler.isEnabled()) throw ALCommandReferences.NOT_ENABLED_ERROR.create();
 
-        ctx.getSource().sendSuccess(MSGH.create("refresh.start.success", true), true);
+        ctx.getSource().sendSuccess(() -> MSGH.create("refresh.start.success", true), true);
         AddressHandler.disable();
         AddressHandler.enable();
-        ctx.getSource().sendSuccess(MSGH.create("refresh.success", true), true);
+        ctx.getSource().sendSuccess(() -> MSGH.create("refresh.success", true), true);
 
         return Command.SINGLE_SUCCESS;
     }

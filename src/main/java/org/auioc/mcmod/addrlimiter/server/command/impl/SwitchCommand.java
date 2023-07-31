@@ -24,11 +24,11 @@ public class SwitchCommand {
         if (status) {
             if (AddressHandler.isEnabled()) throw ALREADY_ENABLED.create();
             AddressHandler.enable();
-            ctx.getSource().sendSuccess(MSGH.create("enable.success", true), true);
+            ctx.getSource().sendSuccess(() -> MSGH.create("enable.success", true), true);
         } else {
             if (!AddressHandler.isEnabled()) throw ALREADY_DISABLED.create();
             AddressHandler.disable();
-            ctx.getSource().sendSuccess(MSGH.create("disable.success", true), true);
+            ctx.getSource().sendSuccess(() -> MSGH.create("disable.success", true), true);
         }
         return Command.SINGLE_SUCCESS;
     }

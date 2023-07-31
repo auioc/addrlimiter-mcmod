@@ -29,13 +29,13 @@ public final class ALServerEventHandler {
 
     @SubscribeEvent
     public static void onPlayerLoggedIn(final PlayerEvent.PlayerLoggedInEvent event) {
-        AddressHandler.playerLogin((ServerPlayer) event.getPlayer());
+        AddressHandler.playerLogin((ServerPlayer) event.getEntity());
 
     }
 
     @SubscribeEvent
     public static void onPlayerLoggedOut(final PlayerEvent.PlayerLoggedOutEvent event) {
-        AddressHandler.playerLogout((ServerPlayer) event.getPlayer());
+        AddressHandler.playerLogout((ServerPlayer) event.getEntity());
     }
 
 }

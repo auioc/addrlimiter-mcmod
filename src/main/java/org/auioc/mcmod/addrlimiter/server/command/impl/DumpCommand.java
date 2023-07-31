@@ -37,7 +37,7 @@ public class DumpCommand {
 
         CommandSourceStack source = ctx.getSource();
         if (source.getEntity() instanceof ServerPlayer) {
-            ctx.getSource().sendSuccess(MSGH.create("dump.json.success", new Object[] {limiter.toJsonText()}, true), false);
+            ctx.getSource().sendSuccess(() -> MSGH.create("dump.json.success", new Object[] {limiter.toJsonText()}, true), false);
         } else {
             LOGGER.info(limiter.toJsonString());
         }
@@ -52,7 +52,7 @@ public class DumpCommand {
 
         try {
             FileUtils.writeStringToFile(FileUtils.getFile(file), AddressHandler.getLimiter().toJsonString());
-            ctx.getSource().sendSuccess(MSGH.create("dump.file.success", new Object[] {file}, true), true);
+            ctx.getSource().sendSuccess(() -> MSGH.create("dump.file.success", new Object[] {file}, true), true);
         } catch (Exception e) {
             LOGGER.error(e);
             throw CommandExceptions.INTERNAL_ERROR.create();
@@ -68,7 +68,7 @@ public class DumpCommand {
 
         CommandSourceStack source = ctx.getSource();
         if (source.getEntity() instanceof ServerPlayer) {
-            source.sendSuccess(limiter.toChatMessage(), false);
+            source.sendSuccess(() -> limiter.toChatMessage(), false);
         } else {
             LOGGER.info(limiter.toChatMessage().getString());
         }

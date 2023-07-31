@@ -6,7 +6,6 @@ import org.auioc.mcmod.arnicalib.game.entity.player.AddrUtils;
 import org.auioc.mcmod.arnicalib.game.event.server.ServerLoginEvent;
 import net.minecraft.Util;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.server.ServerLifecycleHooks;
 
@@ -27,9 +26,11 @@ public final class AddressHandler {
     public static void enable() {
         LIMITER.clear();
         (ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayers())
-            .forEach((player) -> {
-                LIMITER.add(AddrUtils.getPlayerIp(player), player.getUUID());
-            });
+            .forEach(
+                (player) -> {
+                    LIMITER.add(AddrUtils.getPlayerIp(player), player.getUUID());
+                }
+            );
         ENABLED.set(true);
     }
 
@@ -51,7 +52,7 @@ public final class AddressHandler {
         if (!ENABLED.get()) return;
 
         if (!LIMITER.check(AddrUtils.getPlayerIp(player), player.getUUID())) {
-            player.connection.disconnect((Component) new TextComponent(getMessage()));
+            player.connection.disconnect(Component.literal(getMessage()));
         } else {
             LIMITER.add(AddrUtils.getPlayerIp(player), player.getUUID());
         }
