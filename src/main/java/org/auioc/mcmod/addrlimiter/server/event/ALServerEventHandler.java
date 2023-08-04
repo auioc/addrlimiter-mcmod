@@ -20,7 +20,7 @@ public final class ALServerEventHandler {
 
     @SubscribeEvent
     public static void onPlayerAttemptLogin(final ServerLoginEvent event) {
-        if (ALConfig.disconnectBeforeLogin.get()) {
+        if (ALConfig.DISCONNECT_BEFORE_LOGIN.get()) {
             if (event.getPacket().getIntention() == ConnectionProtocol.LOGIN) {
                 AddressHandler.playerAttemptLogin(event);
             }
